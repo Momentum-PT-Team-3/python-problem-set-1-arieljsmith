@@ -145,3 +145,4 @@ def gcd(a, b):
             b = (b - a) / 2
     g = a
     return g * 2**d
+    
