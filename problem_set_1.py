@@ -42,7 +42,7 @@ def is_even(number):
 # temperature in Celsius.
 def fahrenheit_to_celsius(fahrenheit):
     celsius = (fahrenheit - 32) * 0.5556
-    return celsius
+    return int(celsius)
 
 # ------------------------------------------------------------------------------
 # 7. Create a function called `celsius_to_fahrenheit` that takes a
@@ -91,13 +91,13 @@ def lesser(num1, num2):
 # If any other language code is used, return nothing.
 def multigreeting(name, language):
     if language == "en":
-        return "Hello, " + name + " !"
+        return "Hello, " + name + "!"
     elif language == "es":
-        return "¡Hola, " + name + " !"
+        return "¡Hola, " + name + "!"
     elif language == "fr":
-        return "Bonjour, " + name + " !"
+        return "Bonjour, " + name + "!"
     elif language == "eo":
-        return "Saluton, " + name + " !"
+        return "Saluton, " + name + "!"
     else:
         return
 
