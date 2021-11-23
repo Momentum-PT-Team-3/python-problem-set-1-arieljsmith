@@ -12,24 +12,38 @@ left_over = candies % people
 # 3. Create a function called `greeting` that returns "Hello, <name>!",
 # where <name> is the name given as an argument to the function.
 def greeting(name):
-    return "Hello, " + name + "!"
+    return f"Hello, {name}!"
 
 
 # ------------------------------------------------------------------------------
 # 4. Create a function called `is_odd` that, given a number, will
 # return true if the number is odd and false if it is not. An odd number is a
 # number which, when divided by 2, has a remainder of 1 or -1.
+
+# USING TRY/EXCEPT (I'm still trying to wrap my head around
+# try/except, even after getting this to work!):
 def is_odd(number):
-    if number % 2 == 1 or number % 2 == -1:
-        return True
-    else:
+    try:
+        return (number % 2 == 1 or number % 2 == -1)
+    except:
         return False
+
+# USING IF/ELSE:
+# def is_odd(number):
+#     if number % 2 == 1 or number % 2 == -1:
+#         return True
+#     else:
+#         return False
 
 # ------------------------------------------------------------------------------
 # 5. Create a function called `is_even` that, given a number, will
 # return true if the number is even and false if it is not. An even number is a
 # number which, when divided by 2, has a remainder of 0.
 def is_even(number):
+    #USING IS_ODD
+    # return bool((not is_odd(number)) and type(number) == int)
+
+    # USING IF/ELSE:
     if number % 2 == 0:
         return True
     else:
@@ -90,16 +104,29 @@ def lesser(num1, num2):
 #
 # If any other language code is used, return nothing.
 def multigreeting(name, language):
-    if language == "en":
-        return "Hello, " + name + "!"
-    elif language == "es":
-        return "¡Hola, " + name + "!"
-    elif language == "fr":
-        return "Bonjour, " + name + "!"
-    elif language == "eo":
-        return "Saluton, " + name + "!"
-    else:
+    # DICTIONARY
+    try:
+        multilanguage_greeting_dict = {
+            "en": f"Hello, {name}!",
+            "es": f"¡Hola, {name}!",
+            "fr": f"Bonjour, {name}!",
+            "eo": f"Saluton, {name}!"
+        }
+        return multilanguage_greeting_dict[language]
+    except:
         return
+    
+    #NO DICTIONARY
+    # if language == "en":
+    #     return "Hello, " + name + "!"
+    # elif language == "es":
+    #     return "¡Hola, " + name + "!"
+    # elif language == "fr":
+    #     return "Bonjour, " + name + "!"
+    # elif language == "eo":
+    #     return "Saluton, " + name + "!"
+    # else:
+    #     return
 
 # ------------------------------------------------------------------------------
 # 11. The greatest common divisor (https://en.wikipedia.org/wiki/Greatest_common_divisor)
@@ -129,6 +156,19 @@ def multigreeting(name, language):
 # Write a function called `gcd` that takes two arguments and returns the greatest
 # common divisor using the instructions above.
 def gcd(a, b):
+    # TRYING TERNARY OPERATORS
+    # d = 0
+    # while is_even(a) and is_even(b):
+    #     a = a / 2
+    #     b = b / 2
+    #     d = d + 1
+    # while a != b:
+    #     a = a / 2 if is_even(a) else b = b / 2 if is_even(b) else a = (a - b) / 2 if a > b else b = (b - a) / 2
+    # g = a
+    # return g * 2**d
+
+
+    # ORIGINAL
     d = 0
     while is_even(a) and is_even(b):
         a = a / 2
