@@ -23,10 +23,12 @@ def greeting(name):
 # USING TRY/EXCEPT (I'm still trying to wrap my head around
 # try/except, even after getting this to work!):
 def is_odd(number):
+    output = False
     try:
-        return (number % 2 == 1 or number % 2 == -1)
-    except:
-        return False
+        output = number % 2 == 1 or number % 2 == -1
+    except TypeError:
+        print("Does not compute")
+    return output
 
 # USING IF/ELSE:
 # def is_odd(number):
@@ -48,6 +50,7 @@ def is_even(number):
         return True
     else:
         return False
+        # IS_EVEN MIGHT BE A BETTER USE OF TRY/EXCEPT THAN IS_ODD
 
 
 # ------------------------------------------------------------------------------
@@ -153,10 +156,11 @@ def multigreeting(name, language):
 # g = a
 # output g * 2**d
 
+
 # Write a function called `gcd` that takes two arguments and returns the greatest
 # common divisor using the instructions above.
 def gcd(a, b):
-    # TRYING TERNARY OPERATORS
+    # TRYING TERNARY OPERATORS--THIS DIDN'T WORK
     # d = 0
     # while is_even(a) and is_even(b):
     #     a = a / 2
@@ -164,24 +168,45 @@ def gcd(a, b):
     #     d = d + 1
     # while a != b:
     #     a = a / 2 if is_even(a) else b = b / 2 if is_even(b) else a = (a - b) / 2 if a > b else b = (b - a) / 2
+    # ALTERNATELY===
+    # a = a / 2 if is_even(a) else (a - b) / 2
+    # b = b / 2 if is_even(b) else (b - a) / 2
+    # ===
     # g = a
     # return g * 2**d
 
-
-    # ORIGINAL
-    d = 0
+    # TRYING A TUPLE WITH TERNARY OPERATORS
+    counter = 0
     while is_even(a) and is_even(b):
         a = a / 2
         b = b / 2
-        d = d + 1
+        counter += 1
+    ab_tuple = (a, b)
     while a != b:
-        if is_even(a):
-            a = a / 2
-        elif is_even(b):
-            b = b / 2
-        elif a > b:
-            a = (a - b) / 2
-        else:
-            b = (b - a) / 2
-    g = a
-    return g * 2**d
+        while is_even(a) or is_even(b):
+            ab_tuple = (a/2, b/2) if is_even(a) and is_even(b) else (a/2, b) if is_even(a) \
+            and not is_even(b) else (a, b/2) if not is_even(a) and is_even(b) else (a, b)
+            a = ab_tuple[0]
+            b = ab_tuple[1]
+        ab_tuple = ((a-b)/2, b) if a > b else (a, (b-a)/2)
+        a = ab_tuple[0]
+        b = ab_tuple[1]
+    return a * 2**counter
+
+    # ORIGINAL
+    # counter = 0
+    # while is_even(a) and is_even(b):
+    #     a = a / 2
+    #     b = b / 2
+    #     counter += 1
+    # while a != b:
+    #     if is_even(a):
+    #         a = a / 2
+    #     elif is_even(b):
+    #         b = b / 2
+    #     elif a > b:
+    #         a = (a - b) / 2
+    #     else:
+    #         b = (b - a) / 2
+    # g = a
+    # return g * 2**counter
