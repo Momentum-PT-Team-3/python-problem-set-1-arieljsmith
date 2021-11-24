@@ -43,14 +43,14 @@ def is_odd(number):
 # number which, when divided by 2, has a remainder of 0.
 def is_even(number):
     #USING IS_ODD
-    # return bool((not is_odd(number)) and type(number) == int)
+    # return bool((not is_odd(number)) and (type(number) is int) and (number is not 0))
 
     # USING IF/ELSE:
     if number % 2 == 0:
         return True
     else:
         return False
-        # IS_EVEN MIGHT BE A BETTER USE OF TRY/EXCEPT THAN IS_ODD
+
 
 
 # ------------------------------------------------------------------------------
